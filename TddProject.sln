@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tdd.API", "Tdd.API\Tdd.API.csproj", "{EC12CC66-8326-47CD-AB4C-87A11471D843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tdd.UnitTests", "Tdd.UnitTests\Tdd.UnitTests.csproj", "{3EFE511F-7D05-4065-96A3-9938AE981D26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC12CC66-8326-47CD-AB4C-87A11471D843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC12CC66-8326-47CD-AB4C-87A11471D843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC12CC66-8326-47CD-AB4C-87A11471D843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC12CC66-8326-47CD-AB4C-87A11471D843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFE511F-7D05-4065-96A3-9938AE981D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFE511F-7D05-4065-96A3-9938AE981D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFE511F-7D05-4065-96A3-9938AE981D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFE511F-7D05-4065-96A3-9938AE981D26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
