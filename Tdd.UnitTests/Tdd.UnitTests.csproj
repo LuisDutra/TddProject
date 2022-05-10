@@ -27,4 +27,8 @@
     <Folder Include="Helpers" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tdd.API\Tdd.API.csproj" />
+  </ItemGroup>
+
 </Project>
