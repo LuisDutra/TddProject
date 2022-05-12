@@ -1,7 +1,11 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 using Tdd.API.Controllers;
+using Tdd.API.Models;
+using Tdd.API.Services;
 using Xunit;
 
 namespace Tdd.UnitTests.Systems.Controllers;
@@ -17,5 +21,16 @@ public class TestUsersController
         var result = (OkObjectResult)await sut.Get();
         //Asert
         result.StatusCode.Should().Be(200);
+    }
+
+    [Fact]
+    public async Task Get_OnSucess_InvokesUserServices()
+    {
+        //Arrange
+        var mockUsersService = new Mock<IUsersService>();
+        mockUsersService.Setup(service => service.GetAllUsers()).returnsAsync(new List<User>());
+        var sut = new UsersController(mockUsersService.Object);
+        //Act
+        //Asert
     }
 }
