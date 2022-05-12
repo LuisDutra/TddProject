@@ -16,7 +16,9 @@ public class TestUsersController
     public async Task Get_OnSucess_ReturnsStatusCode200()
     {
         //Arrange
-        var sut = new UsersController();
+        var mockUsersService = new Mock<IUsersService>();
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        var sut = new UsersController(mockUsersService.Object);
         //Act
         var result = (OkObjectResult)await sut.Get();
         //Asert
@@ -28,9 +30,11 @@ public class TestUsersController
     {
         //Arrange
         var mockUsersService = new Mock<IUsersService>();
-        mockUsersService.Setup(service => service.GetAllUsers()).returnsAsync(new List<User>());
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
         var sut = new UsersController(mockUsersService.Object);
         //Act
+        var result = await sut.Get();
         //Asert
+        mockUsersService.Verify(service => service.GetAllUsers(), Times.Once);
     }
 }
