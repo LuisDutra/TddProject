@@ -26,7 +26,7 @@ public class TestUsersController
     }
 
     [Fact]
-    public async Task Get_OnSucess_InvokesUserServices()
+    public async Task Get_OnSucess_InvokesUserServicesExactlyOnce()
     {
         //Arrange
         var mockUsersService = new Mock<IUsersService>();
@@ -36,5 +36,20 @@ public class TestUsersController
         var result = await sut.Get();
         //Asert
         mockUsersService.Verify(service => service.GetAllUsers(), Times.Once);
+    }
+
+    [Fact]
+    public async Task Get_OnSuccess_ReturnListOfUsers()
+    {
+        var mockUsersService = new Mock<IUsersService>();
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        
+        var sut = new UsersController(mockUsersService.Object);
+
+        var result = await sut.Get();
+
+        result.Should().BeOfType<OkObjectResult>();
+        var objectResult = (OkObjectResult)result;
+        objectResult.Value.Should().BeOfType<List<User>>();
     }
 }
