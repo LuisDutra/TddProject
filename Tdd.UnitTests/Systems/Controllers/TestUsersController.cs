@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -6,6 +7,7 @@ using Moq;
 using Tdd.API.Controllers;
 using Tdd.API.Models;
 using Tdd.API.Services;
+using Tdd.UnitTests.Fixtures;
 using Xunit;
 
 namespace Tdd.UnitTests.Systems.Controllers;
@@ -17,7 +19,8 @@ public class TestUsersController
     {
         //Arrange
         var mockUsersService = new Mock<IUsersService>();
-        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(UsersFixture.GetTestUsers());
+        // sut = System under test
         var sut = new UsersController(mockUsersService.Object);
         //Act
         var result = (OkObjectResult)await sut.Get();
@@ -42,7 +45,7 @@ public class TestUsersController
     public async Task Get_OnSuccess_ReturnListOfUsers()
     {
         var mockUsersService = new Mock<IUsersService>();
-        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(UsersFixture.GetTestUsers());
         
         var sut = new UsersController(mockUsersService.Object);
 
@@ -51,5 +54,20 @@ public class TestUsersController
         result.Should().BeOfType<OkObjectResult>();
         var objectResult = (OkObjectResult)result;
         objectResult.Value.Should().BeOfType<List<User>>();
+    }
+    
+    [Fact]
+    public async Task Get_OnNoUsersFound_Returns404()
+    {
+        var mockUsersService = new Mock<IUsersService>();
+        mockUsersService.Setup(service => service.GetAllUsers()).ReturnsAsync(new List<User>());
+        
+        var sut = new UsersController(mockUsersService.Object);
+
+        var result = await sut.Get();
+
+        result.Should().BeOfType<NotFoundResult>();
+        var objectResult = (NotFoundResult)result;
+        objectResult.StatusCode.Should().Be(404);
     }
 }
