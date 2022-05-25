@@ -10,7 +10,7 @@ public static class UsersFixture
     {
         new User
         {
-            Id = new Guid(),
+            Id = 1,
             Name = "Luis",
             Address = new Address()
             {
@@ -22,7 +22,7 @@ public static class UsersFixture
         },
         new User
         {
-            Id = new Guid(),
+            Id = 2,
             Name = "Luis2",
             Address = new Address()
             {
@@ -34,7 +34,7 @@ public static class UsersFixture
         },
         new User
         {
-            Id = new Guid(),
+            Id = 3,
             Name = "Luis3",
             Address = new Address()
             {
